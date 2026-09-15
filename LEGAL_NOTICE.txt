@@ -1,0 +1,33 @@
+FIFA 19 LOCAL FUT - LEGAL NOTICE
+================================
+
+FUT Deba is an independent, unofficial, non-commercial preservation and
+interoperability project. It is not affiliated with, endorsed by, or supported
+by Electronic Arts.
+
+The project restores selected FIFA 19 Ultimate Team functions on the user's
+own computer. It does not connect to the retired EA FUT service and does not
+provide online matchmaking.
+
+FUT Deba does not provide FIFA 19, FIFA19.exe, game DLLs, activation keys,
+activation bypasses, DRM circumvention, or instructions for obtaining an
+unauthorized copy. Users must supply their own legitimately obtained FIFA 19
+PC installation matching a build explicitly supported by the project.
+
+The repository license applies only to project-authored source code and
+documentation. It does not grant rights to FIFA 19, EA assets, third-party
+data, player likenesses, club marks, trademarks, or other material owned by
+their respective rights holders.
+
+Source and binary distributions must not include FIFA executables, DLLs,
+extracted game databases, mirrored CDN files, card art, textures, models,
+audio, certificates, keys, local saves, logs, personal paths, or other
+third-party material without permission from the relevant rights holder.
+
+Local pack weights, rewards, prices, rotations, and other simulated behavior
+are project-authored gameplay choices. They must not be presented as
+historical Electronic Arts probabilities or live-service behavior.
+
+FIFA, FIFA 19, FIFA Ultimate Team and EA SPORTS are trademarks of Electronic
+Arts Inc. All other trademarks and copyrighted material belong to their
+respective owners.

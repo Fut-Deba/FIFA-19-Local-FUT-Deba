@@ -1,0 +1,5 @@
+# Windows command scripts must keep CRLF line endings: cmd.exe misreads
+# labels and blocks in LF files, so every clone gets CRLF for these.
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
