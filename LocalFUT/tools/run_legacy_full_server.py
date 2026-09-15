@@ -123,10 +123,12 @@ def recover_stale_snapshot(path: Path, snapshot: Path) -> None:
     elif current == saved:
         snapshot.unlink()
     else:
-        raise RuntimeError(
-            "a stale hosts snapshot exists beside unrelated hosts changes; "
-            "no file was modified"
-        )
+        # The legacy redirect is already gone, so the snapshot has nothing
+        # left to restore. Keep later machine-owned edits byte-for-byte and
+        # discard only the obsolete recovery file.
+        snapshot.unlink()
+        print("Discarded an obsolete LocalFUT19 hosts snapshot; unrelated "
+              "hosts changes were preserved byte-for-byte.")
 
 
 def wait_for_ports(process: subprocess.Popen, timeout: float = 25.0) -> None:

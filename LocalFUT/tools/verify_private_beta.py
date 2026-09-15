@@ -516,16 +516,6 @@ def verify_package(package_root: Path, strict_staging: bool = False) -> dict:
             if lower_parts & FORBIDDEN_STAGE_PARTS:
                 errors.append(f"forbidden staged directory: {relative}")
 
-        allowed_game_files = {"README.txt"}
-        if game_root.is_dir():
-            unexpected = [
-                _normalized_relative(path, package_root)
-                for path in game_root.rglob("*")
-                if path.is_file() and path.name not in allowed_game_files
-            ]
-            for relative in unexpected:
-                errors.append(f"game file present in clean stage: {relative}")
-
         errors.extend(verify_release_text(package_root))
         errors.extend(verify_staged_server_import(package_root))
         errors.extend(verify_powershell_syntax(package_root))

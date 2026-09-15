@@ -1,4 +1,4 @@
-# FIFA 19 Local FUT — Beta 1.0
+# FIFA 19 Local FUT — Beta 1.1
 
 This package is intended for users who own a legitimate FIFA 19 PC
 installation. It contains no game executable, DLL, activation material, or

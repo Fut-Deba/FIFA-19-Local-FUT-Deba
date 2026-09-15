@@ -63,8 +63,13 @@ if ($cleanText -ne $originalText) {
 # the next launch try to recover a state that no longer exists.
 $dataRoot = Join-Path $env:LOCALAPPDATA 'FIFA19LocalFUT'
 if (Test-Path -LiteralPath $dataRoot) {
+    $snapshotNames = @(
+        'eaapp-full-hosts.original.bin',
+        'legacy-hosts.original.bin'
+    )
     Get-ChildItem -LiteralPath $dataRoot -Recurse -Force -File `
-        -Filter 'eaapp-full-hosts.original.bin' -ErrorAction SilentlyContinue |
+        -ErrorAction SilentlyContinue |
+        Where-Object { $snapshotNames -contains $_.Name } |
         ForEach-Object {
             Remove-Item -LiteralPath $_.FullName -Force
             Write-Host ("Removed stale hosts snapshot: " + $_.FullName)

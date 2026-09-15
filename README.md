@@ -4,7 +4,7 @@
 
 > **Status: early beta.** Things will break. Please read this whole page first.
 
-**Current test release: Beta 1.0.**
+**Current test release: Beta 1.1.**
 
 FUT Deba brings FIFA 19 Ultimate Team back as a local, offline experience.
 Every service runs on your own machine. Nothing is uploaded, there is no
@@ -67,7 +67,7 @@ data the local server needs, so only the release ZIP can be played.
 
 ## 3. Install and first start
 
-1. Create a new empty folder, for example `Desktop\FutDeba-Beta-1.0`, and
+1. Create a new empty folder, for example `Desktop\FutDeba-Beta-1.1`, and
    extract the complete ZIP into it. Do not select Desktop or Downloads itself
    as the destination, and do not run anything from inside the ZIP.
 2. Run **`FUT_DEBA_LAUNCHER.cmd`**. This is the only file you need.
@@ -78,7 +78,8 @@ data the local server needs, so only the release ZIP can be played.
 5. Close FIFA 19 if it is open, press **START LOCAL FUT** and approve the
    Windows prompt.
 6. Wait until the launcher says you can enter FUT, then enter Ultimate Team
-   from the game menu. The 1.0.0.0 build may need about 20 seconds longer.
+   from the game menu. The 1.0.0.0 build keeps the loading state for 30 extra
+   seconds before the launcher reports that the local session is ready.
 
 ### If FIFA 19 is not found
 

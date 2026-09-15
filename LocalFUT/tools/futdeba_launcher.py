@@ -632,11 +632,11 @@ def force_close_fifa() -> bool:
         return False
 
 
-# Live v1 2026-09-13: FIFA 19 v1.0.0.0 needs about 15-20 more seconds after its
-# process and the local server are up before Ultimate Team can be entered, so
-# the launcher keeps showing "Game is loading" that long. The EA App bridge
-# reports ready only at a network-idle main menu and needs no extra wait.
-V1_SETTLE_SECONDS = 20
+# Live v1 2026-09-15: the game needs an extra settling window after its process
+# and local server are up. Keep the launcher on "Game is loading" for 30
+# seconds; this does not delay either process itself.
+# The EA App bridge reports ready at a network-idle main menu and needs no wait.
+V1_SETTLE_SECONDS = 30
 
 
 def game_settled(installation: dict[str, object] | None,
