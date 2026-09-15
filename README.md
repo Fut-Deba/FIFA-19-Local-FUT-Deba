@@ -6,6 +6,10 @@
 
 **Current test release: Beta 1.1.**
 
+Project-authored code and documentation are source-available under
+[`COPYRIGHT.txt`](COPYRIGHT.txt). All rights are reserved. Game content and
+third-party assets are not covered by this notice.
+
 FUT Deba brings FIFA 19 Ultimate Team back as a local, offline experience.
 Every service runs on your own machine. Nothing is uploaded, there is no
 online play and no connection to EA servers.
@@ -172,6 +176,7 @@ A bug report template is in `ADVANCED\BUG_REPORT_TEMPLATE.md`.
 | `ADVANCED\` | Tools most players never need, the test checklist and the bug report template |
 | `LocalFUT\server\` | The local FUT, Blaze and redirector server |
 | `LocalFUT\tools\` | Launcher, build detection and game guards |
+| `COPYRIGHT.txt` | Copyright for FUT Deba-authored code and documentation |
 | `LEGAL_NOTICE.txt` | Read before using or sharing |
 
 Game data extracted from FIFA 19 and content derived from third-party sites is
@@ -181,5 +186,8 @@ not part of this repository and is never committed.
 
 FIFA, FIFA Ultimate Team and EA are trademarks of Electronic Arts Inc. FUT Deba
 is an independent, non-commercial community project with no affiliation to
-Electronic Arts. Use it only with a copy of FIFA 19 you own. See
+Electronic Arts. Use it only with a copy of FIFA 19 you own. Project-authored
+code and documentation © 2026 FUT Deba are source-available with all rights
+reserved. Game content and third-party assets are not covered by that notice.
+See [`COPYRIGHT.txt`](COPYRIGHT.txt) and
 [`LEGAL_NOTICE.txt`](LEGAL_NOTICE.txt).

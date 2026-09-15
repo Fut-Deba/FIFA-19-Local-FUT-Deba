@@ -116,4 +116,4 @@ certificate, credential, game file, or raw network payload.
 - a public release still requires clean-PC validation and every gate listed in
   `ADVANCED\TEST_CHECKLIST.md`.
 
-Read `LEGAL_NOTICE.txt` before using or sharing this package.
+Read `COPYRIGHT.txt` and `LEGAL_NOTICE.txt` before using or sharing this package.

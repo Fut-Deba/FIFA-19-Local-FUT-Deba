@@ -1,0 +1,4 @@
+FUT Deba launcher, server and project code
+Copyright © 2026 FUT Deba. All rights reserved.
+
+FIFA-related trademarks and game content remain the property of their respective owners.

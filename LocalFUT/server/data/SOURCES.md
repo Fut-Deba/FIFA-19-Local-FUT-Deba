@@ -308,12 +308,17 @@ A public source release may include:
 - project-authored schemas, tests, and reconstruction documentation;
 - hashes and provenance references that do not redistribute protected content.
 
-A public source or binary release must exclude:
+A public source repository must exclude:
 
 - FIFA executables, DLLs, CAS/TOC/SB archives, and extracted databases;
 - mirrored CDN files, card art, textures, models, audio, and BIG/DDS assets;
 - FUTBIN or other third-party data dumps;
 - local saves, logs, certificates, keys, and machine-specific caches.
+
+A separately distributed playable ZIP may contain runtime data and assets
+needed for local compatibility. Those files form a separate aggregate: they
+are not covered by the FUT Deba copyright notice, and all rights in them
+remain with their respective owners.
 
 See [LEGAL_NOTICE.txt](../../../LEGAL_NOTICE.txt) and the
 [test checklist](../../../ADVANCED/TEST_CHECKLIST.md).
