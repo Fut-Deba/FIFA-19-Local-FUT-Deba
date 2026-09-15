@@ -69,13 +69,6 @@ def _common_candidates() -> list[tuple[str, str]]:
     if configured:
         values.append((configured, "LOCALFUT19_GAME_DIR"))
 
-    # The optional v1 fallback remains discoverable, but users never need to
-    # copy a game there when an installed build is detected automatically.
-    values.extend((os.fspath(path), "project compatibility folder") for path in (
-        ROOT / "OPTIONAL_V1_GAME",
-        ROOT.parent / "OPTIONAL_V1_GAME",
-    ))
-
     if os.name == "nt":
         program_files = os.environ.get("ProgramFiles", r"C:\Program Files")
         program_files_x86 = os.environ.get(

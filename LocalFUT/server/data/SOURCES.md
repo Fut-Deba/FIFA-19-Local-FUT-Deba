@@ -315,6 +315,5 @@ A public source or binary release must exclude:
 - FUTBIN or other third-party data dumps;
 - local saves, logs, certificates, keys, and machine-specific caches.
 
-See [LEGAL_NOTICE.txt](../../../LEGAL_NOTICE.txt), the
-[test checklist](../../../ADVANCED/TEST_CHECKLIST.md), and the
-[public-release checklist](../../../docs/PUBLIC_RELEASE_CHECKLIST.md).
+See [LEGAL_NOTICE.txt](../../../LEGAL_NOTICE.txt) and the
+[test checklist](../../../ADVANCED/TEST_CHECKLIST.md).

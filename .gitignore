@@ -1,4 +1,7 @@
 # Runtime state created on each PC
+.github/
+docs/
+OPTIONAL_V1_GAME/
 LocalFUT/.runtime/
 __pycache__/
 *.py[cod]

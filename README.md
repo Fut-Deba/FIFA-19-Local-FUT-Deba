@@ -171,8 +171,6 @@ A bug report template is in `ADVANCED\BUG_REPORT_TEMPLATE.md`.
 | `ADVANCED\` | Tools most players never need, the test checklist and the bug report template |
 | `LocalFUT\server\` | The local FUT, Blaze and redirector server |
 | `LocalFUT\tools\` | Launcher, build detection and game guards |
-| `OPTIONAL_V1_GAME\` | Leave empty |
-| `docs\PUBLIC_RELEASE_CHECKLIST.md` | Gates that must pass before the repository becomes public |
 | `LEGAL_NOTICE.txt` | Read before using or sharing |
 
 Game data extracted from FIFA 19 and content derived from third-party sites is

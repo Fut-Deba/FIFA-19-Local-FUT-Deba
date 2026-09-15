@@ -64,8 +64,8 @@ When both builds are installed, the launcher automatically prefers the newer
 EA App build. A mixed, modified, or unknown pair is rejected before the package
 changes `hosts`, starts services, or attaches to the process.
 
-Leave `OPTIONAL_V1_GAME` empty in normal use. The launcher detects installed
-builds automatically, and BROWSE can select an installation in another folder.
+The launcher detects installed builds automatically, and BROWSE can select an
+installation in another folder.
 
 ## Starting and stopping a session
 

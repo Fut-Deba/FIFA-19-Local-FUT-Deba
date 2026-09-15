@@ -45,7 +45,6 @@ REQUIRED_PACKAGE_FILES = (
     "LEGAL_NOTICE.txt",
     "BUILD_INFO.json",
     "PACKAGE_SHA256.txt",
-    "OPTIONAL_V1_GAME/README.txt",
     "LocalFUT/requirements-beta.txt",
     "LocalFUT/SETUP_RUNTIME.cmd",
     "LocalFUT/ADD_COINS.cmd",
@@ -499,10 +498,6 @@ def verify_package(package_root: Path, strict_staging: bool = False) -> dict:
     if (package_root / "BUILD_INFO.json").is_file():
         errors.extend(verify_build_metadata(package_root))
     errors.extend(verify_windows_entrypoints(package_root))
-
-    game_root = package_root / "OPTIONAL_V1_GAME"
-    if not game_root.is_dir():
-        errors.append("missing OPTIONAL_V1_GAME directory")
 
     if strict_staging and package_root.is_dir():
         for path in sorted(package_root.rglob("*")):
