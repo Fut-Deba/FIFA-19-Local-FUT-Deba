@@ -1,7 +1,8 @@
 param(
     [string]$GamePath = "",
     [string]$ProfileId = "",
-    [string]$AccountMode = ""
+    [string]$AccountMode = "",
+    [switch]$Force
 )
 
 $ErrorActionPreference = 'Stop'
@@ -408,6 +409,24 @@ if ($detection.decision -eq 'ambiguous') {
     $selected = $detection.installations[$selectedIndex - 1]
 } elseif ($detection.decision -eq 'selected') {
     $selected = $detection.selected
+} elseif ($Force -and $GamePath) {
+    # Experimental attempt requested by the user on an unverified build: try it
+    # as the EA App build. The native guards use build-specific addresses, so
+    # this may fail or crash if it is not actually that build. It does NOT make
+    # v1 (1.0.0.0) builds work.
+    $forcedExecutable = Join-Path $GamePath 'FIFA19.exe'
+    if (-not (Test-Path -LiteralPath $forcedExecutable -PathType Leaf)) {
+        throw "FIFA19.exe was not found in $GamePath."
+    }
+    Write-Host ''
+    Write-Host 'Experimental attempt: starting this unverified build as the EA App build.' -ForegroundColor Yellow
+    $selected = [pscustomobject]@{
+        displayName    = 'Unverified FIFA 19 build (experimental)'
+        launchStrategy = 'eaapp-menu-guarded-bridge'
+        supportStatus  = 'experimental'
+        executable     = $forcedExecutable
+        gameDirectory  = $GamePath
+    }
 } else {
     Write-Host ''
     Write-Host 'No safe launch strategy was selected.' -ForegroundColor Red

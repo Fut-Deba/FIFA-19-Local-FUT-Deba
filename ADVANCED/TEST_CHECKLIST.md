@@ -4,10 +4,9 @@ This checklist contains the beta 5 object-market validation plus the two
 presentation corrections added in beta 6. Do not repeat the full beta 4
 matrix unless one of these checks exposes a regression.
 
-Use the official EA App build, product version 19.0.4052077.0, for the complete
-release pass. FIFA 19 PC v1.0.0.0 product version 19.0.3865658.0 has limited
-compatibility only for the exact fingerprint recognized by the launcher;
-record it separately when tested.
+Use only the updated official EA App build, product version 19.0.4052077.0,
+for this pass. FIFA 19 v1.0.0.0 is detected and isolated by the launcher, but
+its feature-parity matrix has not been completed and is not part of this test.
 
 For every failure record FAIL, the local time to the minute, the visible
 screen and the newest .network.log and .jsonl files. Record PASS for each

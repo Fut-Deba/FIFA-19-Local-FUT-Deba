@@ -1,4 +1,4 @@
-# FUT Deba — bug report
+# LocalFUT19 private beta — bug report
 
 - Tester:
 - Local date and time:
@@ -27,15 +27,13 @@
 - Successful attempts:
 - Total attempts:
 
-## Attachments
+## Private attachments
 
 - A screenshot or short video showing the complete message.
-- Only the relevant final log lines under `%LOCALAPPDATA%\FIFA19LocalFUT`,
-  beginning a few seconds before the action and with personal paths or session
-  data removed.
+- The relevant final log lines under `%LOCALAPPDATA%\FIFA19LocalFUT`, beginning
+  a few seconds before the action.
 - The complete verifier output when relevant.
 
-Do not upload complete diagnostic files to a public issue. Share them privately
-only if a maintainer requests them. Never attach `FIFA19.exe`, DLLs,
-Data/Patch/Core files, an account SQLite database, certificates, keys, or the
-complete beta package.
+Remove personal paths before submitting the report. Never attach
+`FIFA19.exe`, DLLs, Data/Patch/Core files, an account SQLite database,
+certificates, keys, or the complete beta package.

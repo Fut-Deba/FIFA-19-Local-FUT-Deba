@@ -408,6 +408,23 @@ def session_visual_state(has_build: bool, server_ready: bool,
             "startEnabled": False, "stopEnabled": False}
 
 
+def unsupported_candidate(installations: list[dict[str, object]],
+                          selected: dict[str, object] | None
+                          ) -> dict[str, object] | None:
+    """A found-but-unverified FIFA 19 install to offer an experimental attempt.
+
+    When detection recognizes no supported build but a FIFA 19 was still found
+    at a path, the owner asked to let the user TRY starting it (as the EA App
+    build) instead of blocking Play. It may fail or crash; it is not for v1.
+    """
+    if selected:
+        return None
+    for row in installations or []:
+        if row.get("gameDirectory") and not row.get("known"):
+            return row
+    return None
+
+
 _HTTP_ERROR = re.compile(r"->\s+([45]\d{2})(?:\s|$)")
 _TRACE_ERROR = re.compile(
     r"^(?:Traceback \(most recent call last\):|[\w.]+(?:Error|Exception):)")
@@ -795,6 +812,7 @@ def elevated_action(
     log_path: Path,
     installation: dict[str, object] | None = None,
     account_mode: str = "NORMAL",
+    force: bool = False,
 ) -> None:
     if os.name != "nt":
         raise RuntimeError("Elevated launcher actions are available on Windows only.")
@@ -812,6 +830,9 @@ def elevated_action(
             "-ProfileId", str(installation["profileId"]),
             "-AccountMode", str(account_mode).upper(),
         ])
+        # Experimental: attempt an unverified build as the EA App build.
+        if force:
+            arguments.append("-Force")
     parameters = subprocess.list2cmdline(arguments)
     result = ctypes.windll.shell32.ShellExecuteW(
         None, "runas", "powershell.exe", parameters, os.fspath(ROOT), 0)
@@ -1558,8 +1579,8 @@ class FutDebaLauncher(tk.Tk):
         tk.Label(
             builds.body,
             text=("Preferred\nFIFA 19 PC EA App — 19.0.4052077.0\n\n"
-                  "Limited compatibility\nFIFA 19 PC v1.0.0.0 — 19.0.3865658.0\n\n"
-                  "Only this exact v1 executable and CardsDLL pair is covered; other v1 releases are unsupported. Other builds are shown with fingerprints, but Play remains disabled because compatibility is not covered."),
+                  "Automatic fallback\nFIFA 19 PC v1.0.0.0 — 19.0.3865658.0\n\n"
+                  "The v1 target is recognized, but its full feature-parity matrix is not complete. Other builds are shown with fingerprints, but Play remains disabled because compatibility is not covered."),
             bg=COLORS["surface"], fg=COLORS["text"], font=("Segoe UI", 9),
             wraplength=390, justify="left", anchor="nw").pack(fill="both",
                                                                expand=True)
@@ -1833,9 +1854,11 @@ class FutDebaLauncher(tk.Tk):
         self.diagnostics_path.set(os.fspath(latest) if latest else
                                   os.fspath(value.get("diagnostics", "-")))
         self.diagnostics_summary.set(str(value.get("diagnosticSummary", "")))
+        can_start = (self.selected_installation is not None or
+                     unsupported_candidate(self.installations,
+                                           self.selected_installation) is not None)
         visual = session_visual_state(
-            self.selected_installation is not None, server_ready,
-            fifa_running, self.launch_action)
+            can_start, server_ready, fifa_running, self.launch_action)
         if (self.launch_action == "failed" and
                 getattr(self, "start_failure_reason", None)):
             visual = dict(visual, message=(
@@ -1972,12 +1995,33 @@ class FutDebaLauncher(tk.Tk):
         self.run_account_tool("prepareseasonfinal", destructive=True)
 
     def start_local_fut(self) -> None:
+        forced = False
         if not self.selected_installation:
-            messagebox.showerror(
-                APP_NAME,
-                "Select one of the two exact compatible FIFA 19 builds first. Other versions may work, but their compatibility is not covered.")
-            self.show_page("Game")
-            return
+            candidate = unsupported_candidate(
+                self.installations, self.selected_installation)
+            if candidate is None:
+                messagebox.showerror(
+                    APP_NAME,
+                    "Select one of the two exact compatible FIFA 19 builds first. Other versions may work, but their compatibility is not covered.")
+                self.show_page("Game")
+                return
+            # Experimental attempt on an unverified build (owner 2026-09-18).
+            # Try it as the EA App build; it may fail or crash, and it does NOT
+            # make v1 variants work.
+            if not messagebox.askyesno(
+                    APP_NAME,
+                    "This FIFA 19 build is not one FUT Deba supports.\n\n"
+                    "FUT Deba can try to start it anyway as the EA App build, "
+                    "but it may fail to connect or crash the game. This does "
+                    "not make older 1.0.0.0 builds work.\n\nTry anyway? "
+                    "(experimental)", parent=self):
+                return
+            self.selected_installation = {
+                "gameDirectory": candidate.get("gameDirectory"),
+                "profileId": "fifa19-pc-eaapp-4052077-observed",
+                "launchStrategy": "eaapp-menu-guarded-bridge",
+            }
+            forced = True
         if server_health() or fifa_process_running():
             messagebox.showwarning(APP_NAME, "FIFA 19 or the local server is already active.")
             return
@@ -2008,7 +2052,7 @@ class FutDebaLauncher(tk.Tk):
         log_path = local_data_root() / "launcher-action.log"
         try:
             elevated_action("Start", log_path, self.selected_installation,
-                            self.account_mode.get())
+                            self.account_mode.get(), force=forced)
         except RuntimeError as exc:
             self.launch_action = ""
             self._show_session_state(session_visual_state(
