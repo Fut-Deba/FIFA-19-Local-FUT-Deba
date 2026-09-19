@@ -7,8 +7,7 @@ param(
     [string]$GamePath = '',
     [string]$ProfileId = '',
     [ValidateSet('NORMAL', 'RTG')]
-    [string]$AccountMode = 'NORMAL',
-    [switch]$Force
+    [string]$AccountMode = 'NORMAL'
 )
 
 $ErrorActionPreference = 'Stop'
@@ -38,7 +37,7 @@ try {
         & powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass `
             -File (Join-Path $PSScriptRoot 'start_localfut19.ps1') `
             -GamePath $GamePath -ProfileId $ProfileId `
-            -AccountMode $AccountMode -Force:$Force 2>&1 |
+            -AccountMode $AccountMode 2>&1 |
             Tee-Object -FilePath $resolvedLog -Append
         $result = $LASTEXITCODE
         $ErrorActionPreference = 'Stop'
